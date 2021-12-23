@@ -1,0 +1,46 @@
+{% extends "registration/base.html" %}
+{% load static %}
+{%block title%}
+login
+{%endblock%}
+  {%block content%}
+    <video autoplay muted loop id="myVideo">
+        <source src="{% static 'imgs/bglogin.mp4' %}" type="video/mp4">
+    </video>
+    <div class="container conrlogin text-right">
+        <h1 style="color: white;">تسجيل الدخول</h1>
+    {% if form.errors %}
+<p style="color: white;">Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p style="color: white;">Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+    <p style="color: white;">Please login to see this page.</p>
+    {% endif %}
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+<table class="logtable">
+<tr>
+    <td style="color: white;">{{ form.username.label_tag }}</td>
+    <td style="color: white;">{{ form.username }}</td>
+</tr>
+<tr>
+    <td style="color: white;">{{ form.password.label_tag }}</td>
+    <td style="color: white;">{{ form.password }} </td>
+</tr>
+</table>
+
+<input type="submit" value="login">
+<input type="hidden" name="next" value="{{ next }}">
+</form>
+
+{# Assumes you setup the password_reset view in your URLconf #}
+<p style="color: white;"><a href="{% url 'password_reset' %}">Lost password?</a></p>
+
+</div>
+{%endblock%}

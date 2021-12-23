@@ -1,0 +1,104 @@
+{% extends "main.html" %}
+{% load static %}
+{%block title%}
+Product Detail
+{%endblock%}
+
+{% if user.is_authenticated %}
+
+{%block navActive%}
+  <li><a href="{% url 'products:home' %}" >الصفحة الرئيسية</a></li>
+  <li><a href="{% url 'products:mens' %}">رجالى</a></li> 
+  <li><a href="{% url 'products:womens' %}">حريمى</a></li> 
+  <li><a href="{% url 'products:kids' %}">اطفال</a></li>
+{% endblock %}
+{% else %}
+{%block nav_active%}
+  <li><a href="{% url 'products:home' %}">الصفحة الرئيسية</a></li>
+  <li><a href="{% url 'products:mens' %}">رجالى</a></li> 
+  <li><a href="{% url 'products:womens' %}">حريمى</a></li> 
+  <li><a href="{% url 'products:kids' %}">اطفال</a></li>
+{%endblock%}
+{% endif %}
+{% block bg %}
+<img src="{% static 'imgs/bgll.jpg' %}" style="z-index: -3;position: fixed;right: 0;bottom: 0;width: 100%;" alt="">
+{% endblock %}
+  {%block content%}
+<!-- end side menu -->
+        <section class="container" dir="rtl">
+        <div class="row">
+            <div class="col-md text-right" style="margin: 7px 57px;">
+                <h2>{{product_detail.PRDName}}</h2>
+                <h2>{{product_detail.PRDUnitPrice}} EGY</h2>
+        
+                
+              
+                  <table>
+                    <tr>
+                      <td>الوصف :</td>
+                      <td> {{product_detail.PRDDescription}}</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 135px;">العلامة التجارية :</td>
+                      <td> {{product_detail.PRDPrand}}</td>
+                    </tr>
+                    <tr>
+                      <td id="cartp">المقاس : </td>
+                      <td dir="ltr">
+                       {{product_detail.PRDSize}}
+                      </td>
+                    </tr>
+                                          
+                    <tr>
+                      <td id="cartp">الكمية المتاحة :</td><td>
+                       {{product_detail.PRDQuantity_Available}}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td id="cartp">اللون :</td><td>
+                       {{product_detail.PRDColor}}
+                      </td>
+                    </tr>
+                  </table>
+            </div>
+            <div class="col-md  text-center">
+
+            {% if product_detail.PRDImage %}
+              <div class="changeimgresult"><img src="{{product_detail.PRDImage.url}}" class="card-img-top"></div>
+            {% else %}
+             <div class="changeimgresult"><img src="{% static 'imgs/default.png' %}" class="card-img-top"></div>
+            {% endif %}
+                
+                                                
+            <div class="lol">
+            
+                <div class="changeimg"><img src="{{product_detail.PRDImage.url}}"></div>
+                 
+                 {% comment %}
+                   <!-- {% for image in product_Image %}
+                  
+                  <div class="changeimg"><img src="{{image.PRDiImage.url}}"></div>
+                 
+                 {% endfor %} -->
+                 {% endcomment %}
+                  <div class="changeimg"><img src="{{product_detail.PRDImage1.url}}"></div>
+                  <div class="changeimg"><img src="{{product_detail.PRDImage2.url}}"></div>
+                   
+                 
+                  
+            </div>
+            
+              <form	action="{% url 'cart:cart_add' product_detail.PRDSlug %}"	method="post">
+              {%	csrf_token	%}
+            <p> الكمية التى تحتاجها  : {{	cart_product_form.quantity	}} </p>
+              
+              <button type="submit" class="btn btn-secondary">اضف لعربة التسوق<i class="fas fa-shopping-cart fa-2x"></i></button>
+              
+              <!-- <input	type="submit"	value="Add	to	cart"> -->
+            </form>  
+</div>
+        </div>
+      
+        </section>
+
+{% endblock %}

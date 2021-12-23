@@ -1,0 +1,35 @@
+{% extends "registration/base.html" %}
+{% load static %}
+{%block title%}
+login
+{%endblock%}
+  {%block content%}
+    <video autoplay muted loop id="myVideo">
+        <source src="{% static 'imgs/bglogin.mp4' %}" type="video/mp4">
+    </video>
+
+<div class="container conrlogin text-right">
+    <h1 style="color: white;">تسجيل الدخول</h1>      
+      <form method="POST">
+          {% csrf_token %}
+        <table class="logtable" style="margin: 14px;">
+          <tr>
+            <td style="color: white;">اسم المستخدم</td style="color: white;"><td><input type="text" name="username" placeholder="الاسم الخاص بك"> </td>
+          </tr>
+          <tr>
+            <td style="color: white;">كلمة السر</td style="color: white;"><td><input type="password" name="password" placeholder="ادخل كلمة السر" id="myinput"> 
+              <span class="eye" onclick="hidepass()" dir="rtl">
+                <i id="hide1" class="fa fa-eye"></i>
+                <i id="hide2" class="fa fa-eye-slash"></i>
+              </span>
+            </td>
+          </tr>      
+        </table><input class="btn btn-primary loginbtn" type="submit" value="تسجيل الدخول"><br>
+</form>
+        <!-- <a href="FirstForgetPass.html" id="pass">نسيت كلمة السر</a><br> -->
+        <!-- <input id="checkbox-reg" type="checkbox" value="تذكر حسابى"><label style="color: white;">تذكر حسابى </label style="color: white;"><br> -->
+        <div id="hr"></div>
+         <a href="{% url 'accounts:register' %}" style="margin: 44px;"><input class="btn btn-secondary" type="button" value="انشئ حساب جديد"></a>
+      
+  </div>
+{%endblock%}

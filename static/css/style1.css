@@ -1,0 +1,595 @@
+body{font-family: 'El Messiri', sans-serif;}
+/* index page -------------------------------------- */
+/* start nav bar ------------------------------------*/
+.top-nav-bar{
+top: 0;
+position: sticky;
+background:rgb(0,0,0,.2) ;
+z-index: 2;
+height: 63px; 
+padding-top: 7px;
+}
+.menu-bar a.active,
+.menu-bar a:hover{
+color: white;
+}
+.login{
+    margin-left: 20px;
+    padding: 5px;
+}
+.login a{
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(180, 180, 180);
+    text-decoration:none;
+    margin: 0 5px;
+    border-radius: 10%;
+    border: solid 2px;
+    padding: 4px;
+}
+.login a:hover{
+  color: white;
+}
+.logo1{
+    height: 48px;
+    margin: 5px 10px;
+    cursor: pointer;
+}
+.form-control{
+    font-size: 14px;
+    width: 300px;
+    margin-top: 9px;
+    border: 1px solid black !important;
+    border-top-left-radius: 20px !important;
+    border-bottom-left-radius: 20px !important;
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
+.input-group-text{
+height: 35px;
+background: #b6b6b6 !important;
+border: 1px solid black !important;
+margin: 8.5px 10px 3px 0 !important;
+border-top-left-radius: 0px !important;
+border-bottom-left-radius: 0px !important;
+border-top-right-radius: 20px !important;
+border-bottom-right-radius: 20px !important;
+cursor: pointer;
+}
+.search-box{
+margin: 0 15px 0 190px;
+display: inline-flex;
+}
+.fa-shopping-cart{
+    margin-right: 20px;
+    color: black;
+}
+.fa-heart{
+    color: #be2929
+}
+.fa-search{
+    color: white
+}
+.menu-bar ul{
+    display: inline-flex;
+    padding: 0
+}
+.menu-bar ul li{
+    border-left: 1px solid white;
+    list-style-type: none;
+    padding: 10px 20px;
+}
+.menu-bar ul li a{
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(180, 180, 180);
+    text-decoration:none;
+}
+/* start nav bar edit -------------------- */
+  .newloginn{
+      width: 156px;
+      float: left;
+  }
+  .fcprof{
+    margin: 8px 0 0 24px;
+  }
+ 
+  .navprofimg{
+      width: 25px;
+      height: 24px;
+      border-radius: 25px
+  }
+  .sbprof{
+    margin: 0 130px 0 85px;
+  }
+  .fa-bell{
+      padding: 5px 20px 0 0;
+  }
+  .navbtngroup{
+      margin-right: -30px;
+  }
+  .fa-sign-out-alt{
+      margin-right: 5px;
+  }
+  #navfavfram{
+      width: 410px;
+      height: 350px;
+  }
+  .loginprof{
+    margin: 0 auto;
+  }
+  /* end nav bar edit --------------------- */
+/* end nav bar ------------------------------ */
+/* side-menu -------------------------------- */
+.menubar{
+  background-color: rgb(0,0,0,.8);
+  margin-top: 25px;
+  height: 490px;
+  text-align: center;
+}
+li{
+  list-style: none;
+ }
+.hidemenu1 ,.hidemenu2 ,.hidemenu3{
+  display: none;
+}
+.tree_label{
+  cursor: pointer; 
+  color: darkgray;
+  font-weight: bold;
+}
+.tree_label:hover,.tree li label:hover,.activeseller{
+  color: black;
+  background-color: darkgray;
+}
+.hidemenu1 a,.hidemenu2 a,.hidemenu3 a{
+  text-decoration: none !important;
+ color: gainsboro;
+}
+.menubar ul{
+  padding: 0 40px 0 0;
+}
+.menubar p{
+  margin: 15px 0 0 0;
+} 
+.hidemenu1 li:hover,.hidemenu2 li:hover,.hidemenu3 li:hover{
+  background: darkgray;
+}
+.hidemenu1 a:hover,.hidemenu2 a:hover,.hidemenu3 a:hover{
+  color: black;
+}   
+/* end side-menu----------------------------- */
+/* start responsive navbar -------------------*/
+  @media only screen and (max-width: 650px) {
+    
+    .top-nav-bar{
+      height: 141px !important;
+      position: absolute !important;
+    }
+    .login{
+      width: 185px !important;
+    }
+    .faces{
+      width: 140px !important;
+      top: -80px !important;
+      left: -203px !important;
+    }
+    .logo{
+      width: 132px !important;
+      top: -86px !important;
+      left: -206px !important;
+    }
+    .search-box{
+      height: 50px !important;
+    }
+    .menu-bar{
+      width: 398px !important;
+      margin-top: -3px !important;
+    }
+    .slider , .carousel-inner , #slider{
+      height: 260px !important;
+    }
+    .slider{
+      margin-top: 170px !important;
+    }
+    .pagination{
+      margin: 10px 0 25px 85px !important;    
+    }
+    .favarea{
+      position: absolute !important;
+    }
+  }
+  @media only screen and (max-width: 767px) {
+    .top-nav-bar{
+      height: 141px;
+      position: absolute;
+    }
+    .login{
+      width: 185px;
+    }
+    .faces{
+      width: 140px;
+      top: -80px;
+      left: -272px;
+      height: 36px;
+    }
+    .logo{
+      width: 132px;
+      top: -86px;
+      left: -376px;
+      height: 36px;
+    }
+    .search-box{
+      height: 50px;
+    }
+    .menu-bar{
+      margin: 3px -280px 0 0;
+    }
+    .slider , .carousel-inner , #slider{
+      height: 260px !important;
+    }
+    .slider{
+      margin-top: 170px !important;
+    }
+    .pagination{
+      margin: 10px 0 25px 85px !important;    
+    }
+    .favarea{
+      position: absolute !important;
+    }
+  }
+
+/* end responsive navbar ---------------------*/
+/* start slider ------------------------------*/
+.slider{
+  margin: 25px -16px 25px -17px;
+}
+.carousel-inner{
+    height: 666px;
+}
+/* end slider --------------------------------*/
+/*start cards --------------------------------*/
+.card-img-top{
+    height: 335px;
+    padding-top: 10px;
+    width: 80% !important;
+    margin: auto;
+}
+.overlay{
+    display: block;
+    opacity: 0;
+    position: absolute;
+    top: 35%;
+    margin-left: 0;
+    width: 70px;
+}
+.card:hover .overlay{
+    opacity: 1;
+    margin-left: 15%;
+    transition: 0.7s;
+}
+.price{
+    border: 1px solid black;
+    padding: 5px;
+    width: 108px;
+    text-align: center !important;
+    margin: -15px 0 0 0;
+}
+.card{
+    height: 440px;
+    padding: 4px;
+    background-clip: content-box;
+}
+/* favourite product */
+.favourite-product {
+  cursor:pointer;
+  padding:10px 12px 8px;
+  background:#aaa;
+  border-radius:50%;
+  display:inline-block;
+  margin:0 0 15px;
+  color:white;
+  transition:.2s;
+}
+.favourite-product:hover {
+  color:#e23b3b;
+}
+.favourite-product.press {
+  animation: size .4s;
+  color:#e23b3b;
+}
+
+/*end cards ---------------------------------- */
+
+/* start pagination -------------------------- */
+.pagination {
+    position: relative;
+    z-index: 1;
+    margin: 30px 0 30px 522px;
+ }
+    .pagination .page-item .page-link {
+      width: 40px;
+      height: 40px;
+      border: 1px solid #ebebeb;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 38px;
+      padding: 0;
+      text-align: center;
+      color: #787878; 
+    }
+      .pagination .page-item .page-link:hover, .pagination .page-item .page-link:focus {
+        color: white;
+        box-shadow: none; 
+    }
+    .pagination .page-item:first-child {
+      margin-right: 15px; 
+    }
+      .pagination .page-item:first-child .page-link {
+        margin-left: 0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0; 
+    }
+    .pagination .page-item:last-child {
+      margin-left: 15px; 
+    }
+    .fa-angle-right {
+        margin-top: 14px;
+        margin-right: 15px;
+        float: right;
+    }
+      .pagination .page-item:last-child .page-link {
+        margin-left: 0;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    /* end pagination ------------------------ */
+    /*start Footer --------------------------- */
+.footer_area {
+    position: relative;
+    z-index: 1;
+    background-color: #252525;
+    padding: 70px 0 0px; 
+    margin-top: 20px;
+}
+    .footer_area .single_widget_area .footer_widget_menu {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap; 
+    }
+      .footer_area .single_widget_area .footer_widget_menu li {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        width: 50%; 
+    }
+        .footer_area .single_widget_area .footer_widget_menu li a {
+          display: block;
+          font-size: 12px;
+          color: rgba(255, 255, 255, 0.6);
+          display: block;
+          font-weight: 400;
+          margin-bottom: 10px; 
+          text-align: right
+        }
+          .footer_area .single_widget_area .footer_widget_menu li a:hover, .footer_area .single_widget_area .footer_widget_menu li a:focus {
+            color: #ffffff;
+         }
+    .footer_area .single_widget_area .footer_heading h6 {
+      color: #ffffff;
+      font-size: 12px;
+      text-transform: uppercase;
+      margin-bottom: 0; 
+    }
+    .footer_area .single_widget_area .footer_social_area{
+        margin: 15px 0 0;
+    }
+    .footer_area .single_widget_area .footer_social_area a {
+      color: #ffffff;
+      display: inline-block;
+      padding: 0 15px 0 0;
+      font-size: 25px;
+    }
+    /* الدفع */
+    .footer_area .single_widget_area .payment{
+    margin: 0 0 15px;
+}
+    .footer_area .single_widget_area .payment span{
+        color: white;
+        padding: 0 10px 0 0;
+        font-size: 25px;
+    }
+    .hrr{
+        border: 0.5px white solid;
+        width: 220px;
+    }
+    #copyright{
+        color: white
+    }
+    /* end footer ---------------------------- */
+    /* shopping cart page -------------------- */
+    /* start side menu ----------------------- */
+    .cartside-menu p{
+    color: #252525
+    }
+    .cartside-menu{
+    margin: 5px;
+    padding: 10px;
+    border: 1px dashed #b6b6b6;
+    border-radius: 10px;
+    font-size: 20px;
+    position: fixed;
+    width: 24%;
+    }
+
+    /* end side menu ------------------------- */
+    /* start cart details ---------------------*/
+    #cartimg{
+      height: auto;
+      width: 52px;
+    }
+    .cart-details{
+    border: 1px dashed #b6b6b6;
+    border-radius: 20px;
+    margin: 5px;
+    padding: 15px;
+    }
+    .cartsizes{
+        font-size: 22px;
+    }
+    #cartp,#carth2{
+        color: black;
+        margin: 20px;
+        padding: 11px;
+    }
+   .carth1{
+    margin-right: 15px;
+   }
+    /* end cart details -----------------------*/
+    /* buyer prof --------------------------- */
+    .buyerimgprof{
+    border: solid 1px;
+    margin: 20px;
+    border-radius: 50px;
+    }
+    
+    /* favorite page ------------------------ */
+    #favp{
+        font-size: 20px;
+        color: black;
+        margin-bottom: 0;
+    }
+    .favbtn{
+        width: 121px;
+        margin: 2px;
+    }
+    #favimg{
+        height: 85px;
+    }
+/* Product detail page ------------------- */
+/* for rating ---------------------------- */
+.starrating {
+    padding: 10px;
+    width: 400px;
+}
+.rating{
+    overflow: hidden;
+    vertical-align: bottom;
+    display: inline-block;
+    height: 30px;
+}
+.rating > input{
+    opacity: 0;
+}
+.rating > label{
+    position: relative;
+    display: block;
+    float: left;
+    background: url('../imgs/star-off-big.png');
+    background-size: 30px 30px;
+}
+.rating > label:before{
+    display: block;
+    opacity: 0;
+    content: '';
+    width: 30px;
+    height: 30px;
+    background: url('../imgs/star-on-big.png');
+    background-size: 30px 30px;
+    transition: opacity 0.2s linear;
+}
+.rating > label:hover:before,
+.rating > label:hover ~ label:before,
+.rating:not(:hover) > :checked ~ label:before{
+    opacity: 1;
+}
+/* for photo -------------------------- */
+.changeimg{
+    display: inline-block;
+    padding: 3px 0;
+    margin: 3px 0;
+  }
+   .changeimg img{
+        width: 65px;
+        height: 95px;
+        
+    }
+    .changeimgresult img{
+      width: 300px;
+      height: 400px;
+    }
+    .changeimgresult{
+      border: 2px solid #6b6b6b;
+      width: 314px;
+      height: 414px;
+      margin: 13px auto;
+    }
+    .changeimg{
+      padding: 5px
+    }
+
+    /* make order page ------------- */
+    .visainput{
+      width: 215px;
+    }
+    .visabg{
+      background-image: url("../imgs/payment1.jpg");
+      background-attachment: fixed;
+    }
+    .visabg1{
+      background-attachment: fixed;
+      background-repeat: no-repeat
+    }
+    .visabtn{
+      margin: 20px 0 20px 1214px;
+      width: 125px;
+    }    
+/* start seller ------------------ */
+/* seller prof ------------------- */
+.sellerprof{
+  margin-top: 20px;
+}
+.sideseller{
+  margin-top: -20px;
+}
+.sideseller p {
+  margin: 0;
+  text-align: right;
+  font-size: 20px;
+  padding: 15px;
+}
+.sideseller a{
+  text-decoration: none;
+}
+/* productmanagement ----------------*/
+.prodall input,.prodall select,.prodall textarea,.prodall .selectsize{
+  margin: 10px 70px 0 0;
+  
+}
+.prodall input,.prodall textarea,.prodall select{
+  border-radius: 13%;
+  width: 190px;
+}
+.AddNProd{
+  cursor: pointer;
+  font-weight: bold;
+  border: 3px solid;
+  width: 200px;
+  font-size: 25px;
+  margin: 20px 0;
+}
+.AddNProd:hover{
+  background-color: seagreen;
+  color: white;
+  border-color: #17a2b8;
+}
+.editprod button{
+  width: 80px;
+  margin-bottom: 8px;
+}
+/* order management */
+.hidordermanage1,.hidordermanage2,.hidordermanage3{
+  display: none;
+}

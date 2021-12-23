@@ -1,0 +1,151 @@
+{% extends "main.html" %}
+{% load static %}
+{%block title%}
+Product Management
+{%endblock%}
+{% block bg %}
+<img src="{% static 'imgs/bgdd.jpg' %}" style="position: fixed;right: 0;bottom: 0;width: 100%;" alt="">
+{%endblock%}
+{%block content%}
+
+    <section class="sellerprof text-center row" dir="rtl">
+      <!-- start side menu -->
+      <div class="col-md-3 sideseller">
+        <div style="position: fixed;
+        background-color: rgb(0,0,0,.8);
+        width: 330px;
+        height: 782px;">
+        <a href="{% url 'products:dashboard' %}"><p class="tree_label lab1">
+          الرئيسية
+        </p></a>
+        <a href="{% url 'accounts:prof' %}"><p class="tree_label">
+          الملف الشخصى
+        </p></a>
+        <a href="{% url 'products:orderhistory' %}"><p class="tree_label">
+          تاريخ المبيعات
+        </p></a>
+        <a href="{% url 'products:add_product' %}"><p class="tree_label activeseller">
+          ادارة المنتج
+        </p></a>
+        <a href="{% url 'products:manageorder' %}"><p class="tree_label">
+          ادارة الاوردر
+        </p></a>
+      </div>
+      </div>
+      <!-- end side menu -->
+      <div class="col-md-9">
+        <h1 class="text-right carth1">اضافة او تعديل او حذف منتج</h1>
+
+<!-- -------------------------   -->
+        
+          <div class="AddNProd lab1">
+            اضافة منتج     <i class="fas fa-angle-down"></i><i class="fas fa-angle-up"></i>
+
+            
+          </div>
+          <form method="POST" class="hidemenu1 text-right" enctype="multipart/form-data">
+            {% csrf_token%}
+            <div class="row prodall">
+              <div class="col-md-6 p-3">
+                <table>
+                  <tr>
+                    <td>الفئة</td><td>
+                    {{add_product.Category}}
+                  </td>
+                  </tr>
+                  <tr>
+                    <td>اسم المنتج</td>
+                    <td>{{add_product.PRDName}}</td>
+                  </tr>
+                  <tr>
+                    <td>السعر</td>
+                    <td>{{add_product.PRDUnitPrice}}</td>
+                  </tr>
+                  <tr>
+                    <td>اللون</td><td>
+                      {{add_product.PRDColor}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>اختيار صورة رئيسية</td>
+                    <td>{{add_product.PRDImage}}</td>
+                  </tr>
+                  <tr>
+                    <td>اختيار صورة صغيرة اولى</td>
+                    <td>{{add_product.PRDImage1}}</td>
+                  </tr>
+                  <tr>
+                    <td>اختيار صورة صغيرة ثانية</td>
+                    <td>{{add_product.PRDImage2}}</td>
+                  </tr>
+                </table>
+              </div>
+              <!-- ------------------------------------------- -->
+              <div class="col-md-6 p-3">
+                <table>
+                  <tr>
+                    <td>اسم الماركة</td>
+                    <td>{{add_product.PRDPrand}}</td>
+                  </tr>
+                  <tr>
+                    <td>الكمية</td>
+                    <td>{{add_product.PRDQuantity_Available}}</td>
+                  </tr>
+                  <tr>
+                    <td id="cartp">المقاس </td>
+                    <td dir="ltr">{{add_product.PRDSize}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>وصف المنتج</td>
+                    <td>{{add_product.PRDDescription}}</td>
+                  </tr>
+                  <tr>
+                    <td>رابط المنتج</td>
+                    <td>{{add_product.PRDSlug}}</td>
+                  </tr>
+                </table>
+              </div>
+              <input style="margin: 25px auto;" type="submit" value="اضافة">
+            </div>
+          </form>
+<!--   ---------------------- -->
+
+<hr>
+  <h2 class="m-3">
+      جميع المنتجات المضافة  ( <strong>{{total_products}}</strong> )
+  </h2>
+  
+        <table class="table editprod">
+            <thead>
+              <tr>
+                <th scope="col">صورة المنتج</th>
+                <th scope="col">اسم المنتج</th>
+                <th scope="col">السعر</th>
+                <th scope="col">تعديل\حذف</th>
+               </tr>
+            </thead>
+            {% for pro in allpro %}
+  
+
+            <tbody>
+              <tr>
+                <td><img width="70px" height="auto" src="{{pro.PRDImage.url}}"></td>
+                <td>{{pro.PRDName}}</td>
+                <td>{{pro.PRDUnitPrice}} EGY</td>
+                <td>
+                  <a class="btn btn-danger" href="{% url 'products:update' pro.PRDSlug %}"> تعديل</a>
+
+                  <br>
+                  
+                  <a class="btn btn-secondary" style="width: 67px;margin-top: 10px;" href="{% url 'products:delete' pro.PRDSlug %}">حذف</a>
+                </td>
+              
+              </tr>
+            
+            </tbody>
+            {% endfor %}
+        </table>
+      </div>
+    </section>
+{%endblock%}

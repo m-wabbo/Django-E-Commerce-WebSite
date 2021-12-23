@@ -1,0 +1,14 @@
+{% extends "main.html" %}
+{% load static %}
+{%block title%}
+thanks
+{%endblock%}
+{%block content%}
+<div style="text-align: center;
+    margin: 100px auto;
+    font-size: 29px;">
+<h1>شكرا لك</h1>
+    <p>تم إكمال طلبك الخاص بك بنجاح.  
+رقم الطلب هو <strong>( {{ order.id }} )</strong>.</p>
+</div>
+{%	endblock %}

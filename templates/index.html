@@ -1,0 +1,103 @@
+{% extends "main.html" %}
+{% load static %}
+{%block title%}
+home
+{%endblock%}
+  {%block content%}
+    <!-- start slides -->  
+    <div class="container">
+      <div class="slider">
+        <div id="slider" class="carousel slide carousel-fade" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <a href="#"><img src="{% static 'imgs/bgm.jpg' %}" class="d-block w-100"></a>
+            </div>
+            <div class="carousel-item">
+              <a href="#"><img src="{% static 'imgs/slide2.jpg' %}" class="d-block w-100"></a>
+            </div>
+            <div class="carousel-item">
+            <a href="#"><img src="{% static 'imgs/slide3.jpg' %}" class="d-block w-100"> </a>
+            </div>
+          </div>
+          <ol class="carousel-indicators">
+            <li data-target="#slider" data-slide-to="0" class="active"></li>
+            <li data-target="#slider" data-slide-to="1"></li>
+            <li data-target="#slider" data-slide-to="2"></li>
+          </ol>
+        </div>
+      </div>
+      <!-- end slides -->
+      <!-- start cards -->
+      <div class="row">
+        {% for product in product_list %}
+        <div class="card col-lg-4">
+          
+          {% if product.PRDImage %}
+            <img src="{{product.PRDImage.url}}" class="card-img-top">
+          {% else %}
+            <img src="{% static 'imgs/default.png' %}" class="card-img-top">
+          {% endif %}
+            
+          <div class="overlay">
+              <a href="{% url 'products:product_detail' product.PRDSlug %}"><button type="button" class="btn btn-secondary" title="تفاصيل المنتج"><i class="fa fa-eye fa-2x"></i></button></a>
+          </div>
+          <div class="card-body text-right">
+            <h5 class="card-title">{{product}}</h5>
+            
+            <p class="text-left price">{{product.PRDUnitPrice}} EGY</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+<h2>اخر منتج اوضيف</h2>
+  <div class="row">
+    <div class="card col-lg-4">      
+      {% if prolast.PRDImage %}
+        <img src="{{prolast.PRDImage.url}}" class="card-img-top">
+      {% else %}
+        <img src="{% static 'imgs/default.png' %}" class="card-img-top">
+      {% endif %}
+      <div class="overlay">
+          <a href="{% url 'products:product_detail' prolast.PRDSlug %}"><button type="button" class="btn btn-secondary" title="تفاصيل المنتج"><i class="fa fa-eye fa-2x"></i></button></a>
+      </div>
+      <div class="card-body text-right">
+        <h5 class="card-title">{{prolast}}</h5>    
+        <p class="text-left price">{{prolast.PRDUnitPrice}} EGY</p>
+      </div> 
+    </div>
+  </div>
+</div>
+  
+     <!-- start navigation -->
+  
+  {% if product_list.has_other_pages %}
+    <nav aria-label="navigation">
+        <ul class="pagination mt-50 mb-70">
+          
+          {% if product_list.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{product_list.previous_page_number}}"><i class="fa fa-angle-left"></i></a></li>
+          {% else %}
+            <li class="disables">
+          {% endif %}
+          
+          {% for pages in product_list.paginator.page_range %}
+            {% if product_list.number == pages %}
+              <li class="page-item"><a class="page-link" href="#">{{pages}}</a></li>
+            {% else %}
+              <li class="page-item"><a class="page-link" href="?page={{pages}}">{{pages}}</a></li>
+            {% endif %}
+          {% endfor %}
+
+          {% if product_list.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{product_list.next_page_number}}"><i class="fa fa-angle-right"></i></a></li>
+          {% else %}
+            <li class="disables">
+          {% endif %}
+        </ul>
+    </nav>
+  {% endif %}
+
+  
+  
+  {%endblock%} 

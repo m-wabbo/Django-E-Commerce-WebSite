@@ -1,0 +1,55 @@
+{% extends "main.html" %}
+{% load static %}
+{%block title%}
+Product Management
+{%endblock%}
+{% block bg %}
+<img src="{% static 'imgs/bgdd.jpg' %}" style="position: fixed;right: 0;bottom: 0;width: 100%;" alt="">
+{%endblock%}
+{%block content%}
+<div class="main"> 
+    <form method="POST" class="text-right" enctype="multipart/form-data">
+        {% csrf_token%}
+        <div class="prodall">
+          <div>
+            <table>
+              <tr>
+                <td>الفئة</td><td>
+                {{update_profile.name}}
+              </td>
+              </tr>
+              <tr>
+                <td>اسم المنتج</td>
+                <td>{{update_profile.username}}</td>
+              </tr>
+              <tr>
+                <td>كلمة السر</td>
+                <td>{{update_profile.password}}</td>
+              </tr>
+              <tr>
+                <td>البريد الالكترونى</td>
+                <td>{{userform.email}}</td>
+              </tr>
+              <tr>
+                <td>السعر</td>
+                <td>{{update_profile.phone}}</td>
+              </tr>
+              <tr>
+                <td>اللون</td><td>
+                  {{update_profile.country}}
+                </td>
+              </tr>
+              <tr>
+                <td>رابط المنتج</td>
+                <td>{{update_profile.pic}}</td>
+              </tr>
+            </table>
+          </div>
+          <!-- ------------------------------------------- -->
+          <input style="margin: 25px auto;" type="submit" value="تم">
+        </div>
+      </form>
+  
+</div>     
+{% endblock %}
+    

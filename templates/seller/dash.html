@@ -1,0 +1,63 @@
+{% extends "main.html" %}
+{% load static %}
+{%block title%}
+Product Management
+{%endblock%}
+{% block bg %}
+<img src="{% static 'imgs/bgdd.jpg' %}" style="position: fixed;right: 0;bottom: 0;width: 100%;" alt="">
+{%endblock%}
+{%block content%}
+    <section class="sellerprof text-center row" dir="rtl">
+      <!-- start side menu -->
+      <div class="col-md-3 sideseller">
+        <div style="position: fixed;
+        background-color: rgb(0,0,0,.8);
+        width: 330px;
+        height: 782px;">
+        <a href="{% url 'products:dashboard' %}"><p class="tree_label lab1 activeseller">
+          الرئيسية
+        </p></a>
+        <a href="{% url 'accounts:prof' %}"><p class="tree_label">
+          الملف الشخصى
+        </p></a>
+        <a href="{% url 'products:orderhistory' %}"><p class="tree_label">
+          تاريخ المبيعات
+        </p></a>
+        <a href="{% url 'products:add_product' %}"><p class="tree_label">
+          ادارة المنتج
+        </p></a>
+        <a href="{% url 'products:manageorder' %}"><p class="tree_label">
+          ادارة الاوردر
+        </p></a>
+      </div>
+      </div>
+      <!-- end side menu -->
+      <div class="col-md-9">
+        <h1 class="text-right carth1">احصائيات الموقع</h1>
+        <div class="row">
+        <div class="card m-4" style="width: 18rem;">
+          <img src="{% static 'imgs/member.png' %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text" style="font-size: 20px;">الاعضاء <strong>{{total_customer}}</strong></p>
+          </div>
+        </div>
+        <div class="card m-4" style="width: 18rem;">
+          <img src="{% static 'imgs/order.png' %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text" style="font-size: 20px;">الاوردرات <strong>{{total_orders}}</strong></p>
+          </div>
+        </div>
+        <div class="card m-4" style="width: 18rem;">
+          <img src="{% static 'imgs/product.png' %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text" style="font-size: 20px;">المنتجات <strong>{{total_products}}</strong></p>
+          </div>
+        </div>
+    </div>
+  </div>
+
+      
+      
+    </section>
+    <div style="height: 200px;"></div>
+{%endblock%}

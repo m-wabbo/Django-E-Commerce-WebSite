@@ -1,0 +1,228 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap4.css' %}">
+    <link rel="stylesheet" href="{% static 'fontawesome/css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=El+Messiri:500&display=swap" rel="stylesheet">
+    <title>{%block title%}{%endblock%}</title>
+    
+</head>
+<body>
+{%block nav%}
+{% if user.is_authenticated %}
+<div class="top-nav-bar" dir="rtl">
+  <div class="row ml-0">
+    {% if user.is_superuser %}
+    <div class="loginprof"  style="margin: 0 15px;">
+        <div id="newlogin" class="newloginn">
+          
+          <div class="btn-group navbtngroup" role="group">
+            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img class="navprofimg" src="{% static 'imgs/my logo.PNG' %}" alt=""> {{request.user}}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+              <a class="dropdown-item" href="{% url 'products:add_product' %}">لوحة التحكم</a>
+              <a class="dropdown-item" href="{% url 'accounts:logout' %}?next={% url 'products:home' %}">خروج<i class="fas fa-sign-out-alt"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+          {% else %}
+          <div class="loginprof">
+            <div id="newlogin" class="newloginn">
+          <div class="btn-group navbtngroup" role="group">
+            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img class="navprofimg" src="{% static 'imgs/my logo.PNG' %}" alt=""> {{request.user}}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+              <a class="dropdown-item" href="{% url 'accounts:prof' %}">الملف الشخصى</a>
+              <a class="dropdown-item" href="BuyerHistoryOrders.html">تاريخ الاوردرات</a>
+              <a class="dropdown-item" href="{% url 'accounts:logout' %}?next={% url 'products:home' %}">خروج<i class="fas fa-sign-out-alt"></i></a>
+            </div>
+            <!-- <i class="fas fa-bell fa-2x"></i> -->
+          </div>
+          
+        </div>
+    </div>
+    {% endif %}
+    <!-- menu bar start -->
+    <div class="menu-bar" style="margin: 0 -21px 0 31px;">
+      <ul>
+        {% block navActive %}
+          <li><a href="{% url 'products:home' %}" class="active">الصفحة الرئيسية</a></li>
+          <li><a href="{% url 'products:mens' %}">رجالى</a></li> 
+          <li><a href="{% url 'products:womens' %}">حريمى</a></li> 
+          <li><a href="{% url 'products:kids' %}">اطفال</a></li>
+        {% endblock %}
+          
+      </ul>
+    </div>
+    <!-- menu bar end -->
+    {% if user.is_superuser %}
+    <div class="search-box sbprof" style="margin: 0 154px 0 122px;">
+      {% else %}
+      <div class="search-box sbprof">
+        {%endif%}
+      <form method="GET" action="{% url 'products:search' %}">
+      <div class="row">
+        <span class="col-md-2 input-group-text"><i class="fas fa-search"><input width="10px" type="submit" value="ssss" style="margin: 0 -16px 0 0;opacity:0"></i></span>
+        <input type="text" class="col-md-9 form-control" name="q" placeholder="عن ماذا تبحث">
+      </div>
+      </form>
+    </div>
+    {% if not user.is_superuser %}
+    <div class="faces fcprof">
+      <!-- <div class="cart"> -->
+        
+        {% comment %}
+          {% with total_items=cart|length	%}
+            {% if cart|length > 0 %}
+            Your cart:<a href="{%	url	'cart:cart_detail'	%}">{{ total_items }} item{{ total_items|pluralize }},${{	cart.get_total_price}}</a>
+            {% else %} Your cart is empty.
+            {% endif %}
+        {% endwith %}
+        {% endcomment %}
+          
+        
+        <!-- </div> -->
+      
+        <a href="{% url 'cart:cart_detail' %}"><i class="fas fa-shopping-cart fa-2x"></i>
+        {% with total_items=cart|length	%}
+        {% if cart|length > 0 %}
+          <span class="badge badge-secondary" style="margin: 0 -8px 0 0;">{{ total_items }}</span> 
+        {% else %}
+        <span class="badge badge-secondary" style="margin: 0px -8px 0 0;">0</span> 
+        {% endif %}
+        {% endwith %} 
+        </a>
+     
+    </div>
+    {% endif %}
+    <div class="logo">
+      <img src="{% static 'imgs/4u-logo.PNG' %}" alt="logo" class="logo1">
+    </div>
+  </div>
+</div>
+
+{% else %}
+
+
+    <div class="top-nav-bar" dir="rtl">
+        <div class="row mr-0">
+          <!-- menu bar start -->
+          <div class="menu-bar">
+            <ul>
+              {%block nav_active%}
+              <li><a href="{% url 'products:home' %}" class="active">الصفحة الرئيسية</a></li>
+              <li><a href="{% url 'products:mens' %}">رجالى</a></li> 
+              <li><a href="{% url 'products:womens' %}">حريمى</a></li> 
+              <li><a href="{% url 'products:kids' %}">اطفال</a></li>
+              {%endblock%}
+            </ul>
+          </div>
+          <!-- menu bar end -->
+
+          <div class="search-box sbprof">
+            <form method="GET" action="{% url 'products:search' %}">
+            <div class="row">
+              <span class="col-md-2 input-group-text"><i class="fas fa-search"><input width="10px" type="submit" value="ssss" style="margin: 0 -16px 0 0;opacity:0"></i></span>
+              <input type="text" class="col-md-9 form-control" name="q" placeholder="عن ماذا تبحث">
+            </div>
+            </form>
+          </div>
+          
+          <div class="faces" style="margin: 0 0 0 20px;">         
+            <a href="{% url 'cart:cart_detail' %}"><i class="fas fa-shopping-cart fa-2x"></i>
+        {% with total_items=cart|length	%}
+        {% if cart|length > 0 %}
+          <span class="badge badge-secondary" style="margin: 0 -8px 0 0;">{{ total_items }}</span> 
+        {% else %}
+        <span class="badge badge-secondary" style="margin: 0px -8px 0 0;">0</span> 
+        {% endif %}
+        {% endwith %} 
+        </a>
+          </div>
+            <div class="login">
+            <a href="{% url 'accounts:login' %}" id="oldlogin">تسجيل الدخول</a>
+            <a href="{% url 'accounts:register' %}" id="newlogin">التسجيل</a>
+          </div>
+          
+          <div class="logo">
+            <img src="{% static 'imgs/4u-logo.PNG' %}" alt="logo" class="logo1">
+          </div>
+           
+        </div>
+    </div>
+{% endif %}
+{%endblock%}
+{% block bg %}
+<img src="{% static 'imgs/bga.jpg' %}" style="z-index: -3;position: fixed;right: 0;bottom: 0;width: 100%;" alt="">
+{% endblock %}
+{%block content%}
+
+{%endblock%}
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer_area clearfix">
+        <div class="container">
+            <div class="row align-items-end">
+                <!-- Single Widget Area -->
+                <div class="col-12 col-md-6">
+                    <div class="single_widget_area">
+                        <div class="payment">
+                            <span title="cash"><i class="fas fa-cash-register"></i></span>
+                            <span title="visa"><i class="fab fa-cc-visa"></i></span>
+                            <span title="paypal"><i class="fab fa-cc-paypal"></i></span>
+                            <span title="credit card"><i class="fas fa-credit-card"></i></span>
+                        </div>
+                    </div>
+                   <div class="hrr"></div>
+                    <div class="single_widget_area">
+                      <div class="footer_social_area">
+                          <a href="https://www.facebook.com/wabbooo" title="Facebook"><i class="fab fa-facebook-square"></i></a>
+                          <a href="https://www.instagram.com/mahmoud_samir_fitness/" title="Instagram"><i class="fab fa-instagram"></i></a>
+                          <a href="#" title="Twitter"><i class="fab fa-twitter-square"></i></a>
+                          <a href="https://www.linkedin.com/in/mahmoud-samir-396891170/" title="In"><i class="fab fa-linkedin"></i></i></a>
+                      </div>
+                  </div>
+                </div>
+                <!-- Single Widget Area -->
+                <div class="col-12 col-md-6">
+                    <div class="single_widget_area mb-30">
+                        <ul class="footer_widget_menu">
+                            <li><a href="#"></a></li>
+                            <li><a href="{% url 'products:contact' %}">تواصل معنا</a></li>
+                            <li><a href="{% url 'products:buyinfo' %}">4U الشراء من</a></li>
+                            <li><a href="{% url 'products:policy' %}">سياسة الخصوصية</a></li>
+                            <li><a href="{% url 'products:about' %}">4U تعرف على</a></li>
+                            <li><a href="{% url 'products:cond' %}">الشروط والأحكام</a></li>
+                        </ul>
+                    </div>
+              </div>
+          </div>
+
+<div class="row mt-5">
+                <div class="col-md-12 text-center">
+                    <p id="copyright">Copyright&copy; All rights reserved | This template is made with by Mahmoud Samir Gomaa</p>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+    <!-- ##### Footer Area End ##### -->
+    <!-- end cards -->
+   
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/ajaxjquery.min.js' %}"></script>
+    <script src="{% static 'js/all.js' %}" type="text/javascript"></script>
+</body>
+</html>

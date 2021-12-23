@@ -1,0 +1,17 @@
+{% extends "main.html" %}
+{% load static %}
+{%block title%}
+Product Management
+{%endblock%}
+{% block bg %}
+<img src="{% static 'imgs/bgdd.jpg' %}" style="position: fixed;right: 0;bottom: 0;width: 100%;" alt="">
+{%endblock%}
+{%block content%}
+<div style="height:300px;" class="text-center">
+    <h1 style="margin: 40px;">هل انت متأكد من أنك تريد حذف هذا المنتج</h1>
+    <form action="" method="POST">
+    {% csrf_token %}
+    <input class="btn btn-danger" style="width: 200px;height: 50px;" type="submit" value="مسح">
+    </form>
+</div>
+{%endblock%}

@@ -1,0 +1,72 @@
+{% extends "main.html" %}
+{% load static %}
+{%block title%}
+check out
+{%endblock%}
+{% block bg %}
+<img src="{% static 'imgs/bgll.jpg' %}" style="position: fixed;right: 0;bottom: 0;width: 100%;" alt="">
+{% endblock %}
+{%block content%}
+
+<style>
+    form input{
+        border-radius: 20%;
+    }
+</style>
+
+<div dir="rtl" class="text-right">
+<h1>الدفع</h1>
+    
+<div class="row m-5">
+    <div class="col-md-6">
+        <form action="." method="post" class="order-form">
+        {%	csrf_token	%}
+        <table >
+            <tr>
+                <td class="p-2">الاسم</td>
+                <td class="p-2"> {{form.name}} </td>
+                </tr>
+            <tr>
+            <td class="p-2">العنوان</td>
+            <td class="p-2">{{ form.address }}</td>
+            </tr>
+            <tr>
+                <td class="p-2">رقم الموبايل</td>
+                <td class="p-2"> {{form.phone}} </td>
+            </tr>
+           
+           {% comment %}
+               <!-- <tr>
+            <td>الكود البريدى</td>
+            <td>{{ form.postal_code }}</td>
+            </tr> -->
+           {% endcomment %}
+               
+            
+        
+        </table>
+        <input type="submit" class="btn btn-primary" value="الى الشراء">
+    </form>
+</div>
+    <div class="col-md-6">
+
+
+<h3>الطلبات الخاصة بك</h3><div class="order-info">
+
+    <ul style="border:solid 1px black;width:350px;margin:5px">{% for item in cart %}
+        <li class="m-2">{{ item.quantity }} x {{ item.product }} <span>ُُ{{ item.total_price }} جنيه</span>
+        </li>
+        {% endfor %}
+    </ul>
+    <p>الاجمالى: {{ cart.get_total_price }} جنيه</p> </div>
+    
+
+
+
+       
+ </div>
+</div>
+
+</div>
+<div style="height: 150px;"></div>
+{%	endblock %}

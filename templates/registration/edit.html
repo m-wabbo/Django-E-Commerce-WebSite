@@ -1,0 +1,91 @@
+{% extends "main.html" %}
+{% load static %}
+{%block title%}
+edit account
+{%endblock%}
+{% block bg %}
+<img src="{% static 'imgs/bgdd.jpg' %}" style="position: fixed;right: 0;bottom: 0;width: 100%;" alt="">
+{%endblock%}
+  {%block content%}
+  
+<style>
+table input{
+    border-radius: 20%;
+    padding: 10px;
+}
+table td{
+    padding: 25px 0 0 20px;
+}
+</style>
+<section class="sellerprof text-center row" dir="rtl">
+    {% if user.is_superuser %}
+    <!-- start side menu -->
+    <div class="col-md-3 sideseller">
+      <div style="position: fixed;
+      background-color: rgb(0,0,0,.8);
+      width: 330px;
+      height: 782px;">
+      <a href="{% url 'products:dashboard' %}"><p class="tree_label lab1">
+        الرئيسية
+      </p></a>
+      <a href="{% url 'accounts:prof' %}"><p class="tree_label activeseller">
+        الملف الشخصى
+      </p></a>
+      <a href="{% url 'products:orderhistory' %}"><p class="tree_label">
+        تاريخ المبيعات
+      </p></a>
+      <a href="{% url 'products:add_product' %}"><p class="tree_label">
+        ادارة المنتج
+      </p></a>
+      <a href="{% url 'products:manageorder' %}"><p class="tree_label">
+        ادارة الاوردر
+      </p></a>
+    </div>
+    </div>
+    <!-- end side menu -->
+   {% endif %}
+    <div class="col-md-9" style="text-align: -webkit-center;margin: 50px auto; font-size: 18px;">
+<h1>تعديل ايميلك الخاص</h1>
+
+      <form	action="."	method="post"	enctype="multipart/form-data">
+        <table style="width: 615px;">
+            <tbody>
+                <tr>
+                  <td>الاسم</td>
+                  <td>{{profile_form.name}}</td>
+                </tr>
+                <tr>
+                  <td>اسم المستخدم</td>
+                  <td>{{user_form.username}}</td>
+                </tr>
+                <tr>
+                  <td>البريد الالكترونى</td>
+                  <td>{{user_form.email}}</td>
+                </tr>
+                <tr>
+                  <td>البلد</td>
+                  <td>{{profile_form.phone}}</td>
+                </tr>
+                <tr>
+                  <td>البلد</td>
+                  <td>{{profile_form.country}}</td>
+                </tr>
+                <tr>
+                  <td>اختيار صورة</td>
+                  <td>{{profile_form.pic}}</td>
+                </tr>
+              </table>
+    			
+        {%	csrf_token	%}				
+        <p><input class="btn btn-dark"	type="submit"	value="حفظ التغيرات"></p>		
+    </form> </div>
+
+    
+    
+  </section>
+  <div style="height: 200px;"></div>
+
+
+      
+  {% endblock %}
+      

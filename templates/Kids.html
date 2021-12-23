@@ -1,0 +1,114 @@
+{% extends "main.html" %}
+{% load static %}
+{%block title%}
+home
+{%endblock%}
+
+{% if user.is_authenticated %}
+
+{%block navActive%}
+  <li><a href="{% url 'products:home' %}" >الصفحة الرئيسية</a></li>
+  <li><a href="{% url 'products:mens' %}">رجالى</a></li> 
+  <li><a href="{% url 'products:womens' %}">حريمى</a></li> 
+  <li><a href="{% url 'products:kids' %}" class="active">اطفال</a></li>
+{% endblock %}
+{% else %}
+{%block nav_active%}
+  <li><a href="{% url 'products:home' %}">الصفحة الرئيسية</a></li>
+  <li><a href="{% url 'products:mens' %}">رجالى</a></li> 
+  <li><a href="{% url 'products:womens' %}">حريمى</a></li> 
+  <li><a href="{% url 'products:kids' %}" class="active">اطفال</a></li>
+{%endblock%}
+{% endif %}
+
+    {%block content%}
+      <div class="row ml-0 mr-0">
+<!-- start cards -->
+        <section class="col-md-10 row p-4">
+         
+          {% for product in product_list_kid %}
+        <div class="card col-lg-4">
+          
+          {% if product.PRDImage %}
+            <img src="{{product.PRDImage.url}}" class="card-img-top">
+          {% else %}
+            <img src="{% static 'imgs/default.png' %}" class="card-img-top">
+          {% endif %}
+            
+          <div class="overlay">
+              <a href="{% url 'products:product_detail' product.PRDSlug %}"><button type="button" class="btn btn-secondary" title="تفاصيل المنتج"><i class="fa fa-eye fa-2x"></i></button></a>
+          </div>
+          <div class="card-body text-right">
+            <h5 class="card-title">{{product}}</h5>
+            
+            <p class="text-left price">{{product.PRDUnitPrice}} EGY</p>
+          </div>
+        </div>
+        {% endfor %}
+        </section>
+          <!-- end cards -->
+<!-- start side menu -->
+        <div class="menubar col-md-2">
+          <p class="tree_label lab1">
+            قسم رجالى
+            <ul class="hidemenu1">
+              <li><a href="#">تيشرت</a></li>
+              <li><a href="#">بنطلون</a></li>
+              <li><a href="#">قميص</a></li>
+              <li><a href="#">بدلة</a></li>
+              <li><a href="#">رياضة</a></li>
+            </ul>
+          </p>
+          <p class="tree_label lab2">
+            قسم حريمى
+            <ul class="hidemenu2">
+              <li><a href="#">تيشرت</a></li>
+              <li><a href="#">بنطلون</a></li>
+              <li><a href="#">قميص</a></li>
+              <li><a href="#">بدلة</a></li>
+              <li><a href="#">رياضة</a></li>
+            </ul>
+          </p>
+          <p class="tree_label lab3">
+            قسم اطفالى
+            <ul class="hidemenu3">
+              <li><a href="#">تيشرت</a></li>
+              <li><a href="#">بنطلون</a></li>
+              <li><a href="#">قميص</a></li>
+              <li><a href="#">بدلة</a></li>
+              <li><a href="#">رياضة</a></li>
+            </ul>
+          </p>
+        </div>
+<!-- end side menu -->
+      </div>
+            <!-- start navigation -->
+            {% if product_list_kid.has_other_pages %}
+            <nav aria-label="navigation">
+                <ul class="pagination mt-50 mb-70">
+                  
+                  {% if product_list_kid.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{product_list_kid.previous_page_number}}"><i class="fa fa-angle-left"></i></a></li>
+                  {% else %}
+                    <li class="disables">
+                  {% endif %}
+                  
+                  {% for pages in product_list_kid.paginator.page_range %}
+                    {% if product_list.number == pages %}
+                      <li class="page-item"><a class="page-link" href="#">{{pages}}</a></li>
+                    {% else %}
+                      <li class="page-item"><a class="page-link" href="?page={{pages}}">{{pages}}</a></li>
+                    {% endif %}
+                  {% endfor %}
+        
+                  {% if product_list_kid.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{product_list_kid.next_page_number}}"><i class="fa fa-angle-right"></i></a></li>
+                  {% else %}
+                    <li class="disables">
+                  {% endif %}
+                </ul>
+            </nav>
+          {% endif %}
+            <!-- end navigation -->
+        
+{%endblock%}

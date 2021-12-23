@@ -1,0 +1,102 @@
+{% extends "main.html" %}
+{% load static %}
+{%block title%}
+cart
+{%endblock%}
+{%block content%} 
+{% block bg %}
+<img src="{% static 'imgs/bgll.jpg' %}" style="z-index: -3;position: fixed;right: 0;bottom: 0;width: 100%;" alt="">
+{% endblock %}
+ {% comment %}
+   {%	if	messages	%}
+<ul	class="messages">
+  {%	for	message	in	messages	%}
+  <li	class="{{	message.tags	}}">
+    {{	message|safe	}}
+    <a	href="#"	class="close">x</a>
+  </li>
+  {%	endfor	%}
+</ul>
+{%	endif	%}
+ {% endcomment %}
+
+    <h1 class="text-right carth1">عربة التسوق  <span>(
+      {% with total_items=cart|length	%}
+      {% if cart|length > 0 %}
+        <span>{{ total_items }}</span> 
+      {% else %}
+      <span>0</span> 
+      {% endif %}
+      {% endwith %} )</span></h1>
+<!-- start menu side -->
+<div class="row ml-0" dir="rtl">
+<section class="cartheader col-md-3">
+  <div class="cartside-menu text-center">
+  <p>اجمالى سعر المنتجات</p>
+  <p>{{	cart.get_total_price }} جنية</p>
+  <hr>
+  <p>خدمة التوصيل</p>
+  <p>25.00 جنية</p>
+  <hr>
+  {% if user.is_authenticated %}
+  <a	href="{%	url	'orders:order_create'	%}"	class="btn btn-primary">تابع عملية الشراء</a>
+  {% else %}
+  <a	href="{%	url	'accounts:register'	%}"	class="btn btn-primary">تابع عملية الشراء</a>
+  {% endif %}
+</div>
+</section>
+<!-- end menu side -->
+<!-- start cart details -->
+<section class="col-md-9 text-center">
+  <div class="cart-details">
+      
+      <table class="table">
+        <thead>
+          <tr>
+            
+            <th scope="col">اسم المنتج</th>
+            <th scope="col">الصورة</th>
+            <th scope="col">السعر</th>
+            <th scope="col">الكمية</th>
+            <th scope="col">اجمالى سعر المنتج</th>
+            <th scope="col">----</th>
+           
+          </tr>
+        </thead>
+        <tbody>
+
+          {% with total_items=cart|length	%}
+            {% if cart|length > 0 %}
+           
+            
+
+            {% for item	in cart %}
+            {% with product=item.product %}
+          <tr>
+            <td>{{item.product}}</td>
+            <td><img id="cartimg" src="{{product.PRDImage.url}}"></td>
+            <td	class="num">${{	item.price }}</td>
+            <td>
+                <form action="{% url 'cart:cart_add' product.PRDSlug %}" method="post">
+                {%	csrf_token	%}
+                {{ item.update_quantity_form.quantity }}{{ item.update_quantity_form.update }}
+                <input type="submit" value="تعديل">
+                </form>
+            </td>
+          
+            <td	class="num">${{	item.total_price }}</td>
+            <td><a	href="{%	url	'cart:cart_remove'	product.PRDSlug %}">حذف</a></td>
+          </tr>
+          {% endwith %}{% endfor %}
+           {% else %} <h1>السلة فارغة تصفح بعض المنتجات</h1>
+           {% endif %}
+        {% endwith %}
+        </tbody>
+    </table>
+</section>
+<!-- end cart details -->
+</div>
+<div style="height: 170px;">
+
+</div>
+{% endblock	%}

@@ -1,0 +1,64 @@
+{% extends "registration/base.html" %}
+{% load static %}
+{%block title%}
+register
+{%endblock%}
+  {%block content%}
+  <img src="{% static 'imgs/indexbg.jpg' %}" style="position: fixed;right: 0;bottom: 0;width: 100%;" alt="">
+  <style>
+    div label{
+      color: blue;
+      margin: 30px;
+    }
+    div input{
+      border-radius: 20%;
+      margin: 10px;
+    }
+    div select{
+      width: 228px;
+      margin: 0 5px 0 0;
+    }
+  </style>
+  <div class="container conr text-right">
+    <h1>التسجيل فى الموقع</h1>      
+<form enctype="multipart/form-data" method="POST">
+        {%csrf_token%}
+        <table style="width: 615px;">
+          <tbody>
+              <tr>
+                <td>الاسم</td>
+                <td>{{profileform.name}}</td>
+              </tr>
+              <tr>
+                <td>اسم المستخدم</td>
+                <td>{{userform.username}}</td>
+              </tr>
+              <tr>
+                <td>البريد الالكترونى</td>
+                <td>{{userform.email}}</td>
+              </tr>
+              <tr>
+                <td>كلمة السر</td>
+                <td>{{userform.password}}</td>
+              </tr>
+              <tr>
+                <td>تاريخ الميلاد</td>
+                <td>{{profileform.bdate}}</td>
+              </tr>
+              <tr>
+                <td>رقم الموبايل</td>
+                <td>{{profileform.phone}}</td>
+              </tr>
+              <tr>
+                <td>البلد</td>
+                <td>{{profileform.country}}</td>
+              </tr>
+              <tr>
+                <td>اختيار صورة</td>
+                <td>{{profileform.pic}}</td>
+              </tr>
+            </table>
+          <input class="btn btn-primary regesterbtn" type="submit" value="انشاء حساب">
+      </form>            
+  </div>
+{%endblock%}

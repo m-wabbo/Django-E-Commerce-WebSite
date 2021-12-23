@@ -1,0 +1,53 @@
+{% extends "main.html" %}
+{% load static %}
+{%block title%}
+contact us
+{%endblock%}
+  {%block content%}
+    <!-- <div class="container conrlogin text-right">   
+        <form method="POST">
+          {% csrf_token %}
+          <table>
+            <tr>
+              <td>الاسم</td><td><input type="text" name="name" placeholder="ادخل اسمك"> </td>
+            </tr>
+            <tr>
+              <td>البريد الالكترونى</td><td><input type="email" name="email" placeholder="ادخل بريدك الالكترونى"> </td>
+            </tr>      
+            <tr>
+                <td>الرسالة / الاقتراح</td><td><textarea name="message" id="contmessage"></textarea></td>
+              </tr>      
+          </table>
+          <input class="btn btn-primary contactbtn" type="submit" value="ارسال"><br>
+        </form>
+    </div>   -->
+
+    <!-- <h1>Contact Us</h1>
+    <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}   
+        <div class="form-actions">
+          <button type="submit">Send</button>
+        </div>
+    </form> -->
+
+
+    <!-- <form method="post">
+      {% csrf_token %}
+      {{ form }}
+      <div class="form-actions">
+        <button type="submit">Send</button>
+      </div>
+  </form> -->
+
+  <form method="post" action="{% url 'products:contact' %}">
+    {% csrf_token %}
+<textarea name="message"></textarea>
+    <div class="form-actions">
+      <input type="submit" value='Send'>
+    </div>
+</form>
+
+
+    {% endblock %}
+  

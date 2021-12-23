@@ -1,0 +1,73 @@
+{% extends "main.html" %}
+{% load static %}
+{%block title%}
+Product Management
+{%endblock%}
+{% block bg %}
+<img src="{% static 'imgs/bgdd.jpg' %}" style="position: fixed;right: 0;bottom: 0;width: 100%;" alt="">
+{%endblock%}
+{%block content%}
+<div class="main"> 
+   
+    <form method="POST" class="text-right" enctype="multipart/form-data">
+        {% csrf_token%}
+        <div class="row prodall">
+          <div class="col-md-6 p-3">
+            <table>
+              <tr>
+                <td>الفئة</td><td>
+                {{update_pro.Category}}
+              </td>
+              </tr>
+              <tr>
+                <td>اسم المنتج</td>
+                <td>{{update_pro.PRDName}}</td>
+              </tr>
+              <tr>
+                <td>السعر</td>
+                <td>{{update_pro.PRDUnitPrice}}</td>
+              </tr>
+              <tr>
+                <td>اللون</td><td>
+                  {{update_pro.PRDColor}}
+                </td>
+              </tr>
+              <tr>
+                <td>رابط المنتج</td>
+                <td>{{update_pro.PRDSlug}}</td>
+              </tr>
+              <tr>
+                <td>اختيار صورة</td>
+                <td>{{update_pro.PRDImage}}</td>
+              </tr>
+            </table>
+          </div>
+          <!-- ------------------------------------------- -->
+          <div class="col-md-6 p-3">
+            <table>
+              <tr>
+                <td>اسم الماركة</td>
+                <td>{{update_pro.PRDPrand}}</td>
+              </tr>
+              <tr>
+                <td>الكمية</td>
+                <td>{{update_pro.PRDQuantity_Available}}</td>
+              </tr>
+              <tr>
+                <td id="cartp">المقاس </td>
+                <td dir="ltr">{{update_pro.PRDSize}}
+                </td>
+              </tr>
+              <tr>
+                <td>وصف المنتج</td>
+                <td>{{update_pro.PRDDescription}}</td>
+              </tr>
+            </table>
+          </div>
+          <input style="margin: 25px auto;" type="submit" value="تم">
+        </div>
+      </form>
+  
+</div>     
+{% endblock %}
+    
