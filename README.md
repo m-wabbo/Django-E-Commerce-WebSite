@@ -1,6 +1,6 @@
 # Django-E-Commerce-WebSite
 An online clothing store that anyone can buy from if they are registered on the site.
-## lib you want to open it:
+## lib's you want to open it:
 appdirs==1.4.4
 
 argon2-cffi==21.3.0
